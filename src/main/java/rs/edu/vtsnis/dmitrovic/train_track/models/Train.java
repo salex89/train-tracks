@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
- * Created by aleksandar on 9/13/16.
+ * Created by danijel on 9/13/16.
  */
 @Entity
 @NamedQueries(

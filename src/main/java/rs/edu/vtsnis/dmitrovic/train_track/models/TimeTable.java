@@ -5,7 +5,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import java.util.List;
 
 /**
- * Created by aleksandar on 9/13/16.
+ * Created by danijel on 9/13/16.
  */
 public class TimeTable {
     private long lineId;

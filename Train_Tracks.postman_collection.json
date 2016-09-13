@@ -1,0 +1,139 @@
+{
+  "variables": [],
+  "info": {
+    "name": "Train Tracks",
+    "_postman_id": "652e6d21-5f9a-07c8-6d49-cc3f21a89116",
+    "description": "",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Add new station",
+      "request": {
+        "url": "localhost:9000/stations",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"stationName\":\"Prnjavor\"\n}"
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "Get all stations",
+      "request": {
+        "url": "localhost:9000/stations",
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"stationName\":\"Prnjavor\"\n}"
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "Add new line",
+      "request": {
+        "url": "localhost:9000/lines",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"name\":\"ICE210\",\n\t\"stations\":[\n\t\t{\n\t\t\t\"id\":1\n\t\t},\n\t\t{\n\t\t\t\"id\":2\n\t\t}\n\t]\n}"
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "Get all lines",
+      "request": {
+        "url": "localhost:9000/lines",
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"name\":\"ICE210\",\n\t\"stations\":[\n\t\t{\n\t\t\t\"id\":1\n\t\t},\n\t\t{\n\t\t\t\"id\":3\n\t\t}\n\t]\n}"
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "Add train times",
+      "request": {
+        "url": "localhost:9000/trains",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"line\":1,\n\t\"times\":[\n\t\t1475328600000,\n\t\t1475339400000\n\t]\n}"
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "Get trains",
+      "request": {
+        "url": "localhost:9000/trains?line=1&startTime=1475328500000&endTime=1475328700000",
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"line\":1,\n\t\"times\":[\n\t\t\"2016-10-01T13:00:00\",\n\t\t\"2016-10-02T15:00:00\"\n\t]\n}"
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "Get all trains",
+      "request": {
+        "url": "localhost:9000/trains/all",
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"line\":1,\n\t\"times\":[\n\t\t\"2016-10-01T13:00:00\",\n\t\t\"2016-10-02T15:00:00\"\n\t]\n}"
+        },
+        "description": ""
+      },
+      "response": []
+    }
+  ]
+}

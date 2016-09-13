@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
- * Created by aleksandar on 9/13/16.
+ * Created by danijel on 9/13/16.
  */
 public class TrainCollection extends JsonSerializableCollection {
 

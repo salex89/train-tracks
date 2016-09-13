@@ -11,7 +11,7 @@ import rs.edu.vtsnis.dmitrovic.train_track.models.dao.TrainDAO;
 import java.util.List;
 
 /**
- * Created by aleksandar on 9/13/16.
+ * Created by danijel on 9/13/16.
  */
 public class TimeTableManipulator {
     private final TrainDAO trainDAO;

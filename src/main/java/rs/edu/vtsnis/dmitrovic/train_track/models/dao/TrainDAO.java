@@ -8,7 +8,7 @@ import rs.edu.vtsnis.dmitrovic.train_track.models.Train;
 import java.util.List;
 
 /**
- * Created by aleksandar on 9/13/16.
+ * Created by danijel on 9/13/16.
  */
 public class TrainDAO extends AbstractDAO<Train> implements DAO<Train> {
     private final LineDAO lineDAO;
