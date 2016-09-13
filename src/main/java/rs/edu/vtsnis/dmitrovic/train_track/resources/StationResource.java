@@ -15,7 +15,6 @@ import javax.ws.rs.core.MediaType;
  */
 
 @Path("/stations")
-
 public class StationResource {
     private StationDAO dao;
 

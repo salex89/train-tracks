@@ -31,6 +31,10 @@ public class Line {
     public Line() {
     }
 
+    public Line(long id) {
+        this.id = id;
+    }
+
     public long getId() {
         return id;
     }

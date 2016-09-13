@@ -1,5 +1,6 @@
 package rs.edu.vtsnis.dmitrovic.train_track;
 
+import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import io.dropwizard.Application;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.hibernate.HibernateBundle;
@@ -9,17 +10,25 @@ import org.hibernate.SessionFactory;
 import rs.edu.vtsnis.dmitrovic.train_track.exception_mappers.RelatedEntityMissingExceptionMapper;
 import rs.edu.vtsnis.dmitrovic.train_track.models.Line;
 import rs.edu.vtsnis.dmitrovic.train_track.models.Station;
+import rs.edu.vtsnis.dmitrovic.train_track.models.Train;
 import rs.edu.vtsnis.dmitrovic.train_track.models.dao.LineDAO;
 import rs.edu.vtsnis.dmitrovic.train_track.models.dao.StationDAO;
+import rs.edu.vtsnis.dmitrovic.train_track.models.dao.TrainDAO;
 import rs.edu.vtsnis.dmitrovic.train_track.resources.LineResource;
 import rs.edu.vtsnis.dmitrovic.train_track.resources.StationResource;
+import rs.edu.vtsnis.dmitrovic.train_track.resources.TimeTableManipulator;
+import rs.edu.vtsnis.dmitrovic.train_track.resources.TrainResource;
 
 /**
  * Created by danijel on 9/11/16.
  */
 public class TrainTracksApplication extends Application<TrainTracksConfiguration> {
 
-    private final HibernateBundle<TrainTracksConfiguration> hibernate = new HibernateBundle<TrainTracksConfiguration>(Station.class, Line.class) {
+    private final HibernateBundle<TrainTracksConfiguration> hibernate = new HibernateBundle<TrainTracksConfiguration>(
+            Station.class,
+            Line.class,
+            Train.class
+    ) {
         @Override
         public DataSourceFactory getDataSourceFactory(TrainTracksConfiguration configuration) {
             return configuration.getDataSourceFactory();
@@ -32,6 +41,7 @@ public class TrainTracksApplication extends Application<TrainTracksConfiguration
 
     @Override
     public void run(final TrainTracksConfiguration trainTracksConfiguration, final Environment environment) throws Exception {
+        environment.getObjectMapper().setDateFormat(ISO8601DateFormat.getDateTimeInstance());
         registerExceptionMappers(environment);
         registerHibernateResources(environment);
     }
@@ -55,7 +65,10 @@ public class TrainTracksApplication extends Application<TrainTracksConfiguration
         SessionFactory sessionFactory = hibernate.getSessionFactory();
         StationDAO stationDao = new StationDAO(sessionFactory);
         LineDAO lineDAO = new LineDAO(sessionFactory, stationDao);
+        TrainDAO trainDAO = new TrainDAO(sessionFactory, lineDAO);
         environment.jersey().register(new StationResource(stationDao));
         environment.jersey().register(new LineResource(lineDAO));
+        environment.jersey().register(new TrainResource(new TimeTableManipulator(trainDAO, lineDAO)));
+        environment.jersey().register(ParamConverterProviderImpl.class);
     }
 }
