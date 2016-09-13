@@ -1,5 +1,6 @@
 package rs.edu.vtsnis.dmitrovic.train_track.resources;
 
+import com.codahale.metrics.annotation.Timed;
 import io.dropwizard.hibernate.UnitOfWork;
 import rs.edu.vtsnis.dmitrovic.train_track.models.IdContainer;
 import rs.edu.vtsnis.dmitrovic.train_track.models.Line;
@@ -21,6 +22,7 @@ public class LineResource {
         this.dao = dao;
     }
 
+    @Timed
     @GET
     @UnitOfWork
     @Produces(MediaType.APPLICATION_JSON)
@@ -28,6 +30,7 @@ public class LineResource {
         return new LineCollection(dao.findAll());
     }
 
+    @Timed
     @POST
     @UnitOfWork
     @Produces(MediaType.APPLICATION_JSON)

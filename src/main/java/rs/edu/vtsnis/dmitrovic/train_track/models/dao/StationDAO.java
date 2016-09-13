@@ -22,7 +22,7 @@ public class StationDAO extends AbstractDAO<Station> implements DAO<Station> {
 
     @Override
     public Station findById(long id) {
-        return null;
+        return super.get(id);
     }
 
     @Override

@@ -34,7 +34,6 @@ public class TrainTracksApplication extends Application<TrainTracksConfiguration
     public void run(final TrainTracksConfiguration trainTracksConfiguration, final Environment environment) throws Exception {
         registerExceptionMappers(environment);
         registerHibernateResources(environment);
-
     }
 
     @Override
@@ -59,5 +58,4 @@ public class TrainTracksApplication extends Application<TrainTracksConfiguration
         environment.jersey().register(new StationResource(stationDao));
         environment.jersey().register(new LineResource(lineDAO));
     }
-
 }

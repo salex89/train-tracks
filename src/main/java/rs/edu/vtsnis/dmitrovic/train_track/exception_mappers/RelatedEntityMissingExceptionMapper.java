@@ -27,7 +27,6 @@ public class RelatedEntityMissingExceptionMapper implements ExceptionMapper<Rela
     public Response toResponse(RelatedEntityMissingException e) {
         exceptions.mark();
         return Response.status(Response.Status.BAD_REQUEST)
-                .header("X-YOU-SILLY", "true")
                 .type(MediaType.APPLICATION_JSON_TYPE)
                 .entity(new ErrorMessage(Response.Status.BAD_REQUEST.getStatusCode(),
                         "Related entity missing", "Entity " + e.getEntity() + " with id " + e.getId() + " missing"))
