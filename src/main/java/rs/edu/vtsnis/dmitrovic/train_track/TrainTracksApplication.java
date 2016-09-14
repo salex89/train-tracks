@@ -8,16 +8,12 @@ import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import org.hibernate.SessionFactory;
 import rs.edu.vtsnis.dmitrovic.train_track.exception_mappers.RelatedEntityMissingExceptionMapper;
-import rs.edu.vtsnis.dmitrovic.train_track.models.Line;
-import rs.edu.vtsnis.dmitrovic.train_track.models.Station;
-import rs.edu.vtsnis.dmitrovic.train_track.models.Train;
+import rs.edu.vtsnis.dmitrovic.train_track.models.*;
 import rs.edu.vtsnis.dmitrovic.train_track.models.dao.LineDAO;
+import rs.edu.vtsnis.dmitrovic.train_track.models.dao.ReservationsDAO;
 import rs.edu.vtsnis.dmitrovic.train_track.models.dao.StationDAO;
 import rs.edu.vtsnis.dmitrovic.train_track.models.dao.TrainDAO;
-import rs.edu.vtsnis.dmitrovic.train_track.resources.LineResource;
-import rs.edu.vtsnis.dmitrovic.train_track.resources.StationResource;
-import rs.edu.vtsnis.dmitrovic.train_track.resources.TimeTableManipulator;
-import rs.edu.vtsnis.dmitrovic.train_track.resources.TrainResource;
+import rs.edu.vtsnis.dmitrovic.train_track.resources.*;
 
 /**
  * Created by danijel on 9/11/16.
@@ -27,7 +23,9 @@ public class TrainTracksApplication extends Application<TrainTracksConfiguration
     private final HibernateBundle<TrainTracksConfiguration> hibernate = new HibernateBundle<TrainTracksConfiguration>(
             Station.class,
             Line.class,
-            Train.class
+            Train.class,
+            Seat.class,
+            Reservations.class
     ) {
         @Override
         public DataSourceFactory getDataSourceFactory(TrainTracksConfiguration configuration) {
@@ -66,9 +64,11 @@ public class TrainTracksApplication extends Application<TrainTracksConfiguration
         StationDAO stationDao = new StationDAO(sessionFactory);
         LineDAO lineDAO = new LineDAO(sessionFactory, stationDao);
         TrainDAO trainDAO = new TrainDAO(sessionFactory, lineDAO);
+        ReservationsDAO reservationsDAO = new ReservationsDAO(sessionFactory);
         environment.jersey().register(new StationResource(stationDao));
         environment.jersey().register(new LineResource(lineDAO));
-        environment.jersey().register(new TrainResource(new TimeTableManipulator(trainDAO, lineDAO)));
+        environment.jersey().register(new TrainResource(new TimeTableManipulator(trainDAO, lineDAO, reservationsDAO)));
+        environment.jersey().register(new ReservationsResource(reservationsDAO));
         environment.jersey().register(ParamConverterProviderImpl.class);
     }
 }

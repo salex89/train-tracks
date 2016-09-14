@@ -134,6 +134,20 @@
         "description": ""
       },
       "response": []
+    },
+    {
+      "name": "Get reservations for train",
+      "request": {
+        "url": "localhost:9000/reservations?train=1",
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"line\":1,\n\t\"times\":[\n\t\t\"2016-10-01T13:00:00\",\n\t\t\"2016-10-02T15:00:00\"\n\t]\n}"
+        },
+        "description": ""
+      },
+      "response": []
     }
   ]
 }
