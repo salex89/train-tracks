@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
- * Created by aleksandar on 9/14/16.
+ * Created by danijel on 9/14/16.
  */
 @Entity
 public class Seat {

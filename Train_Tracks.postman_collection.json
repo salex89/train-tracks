@@ -148,6 +148,26 @@
         "description": ""
       },
       "response": []
+    },
+    {
+      "name": "Reserve seat",
+      "request": {
+        "url": "localhost:9000/reservations",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"train\":1,\n\t\"seat\":15,\n\t\"userId\":\"82y324381347117n12v7\"\n}"
+        },
+        "description": ""
+      },
+      "response": []
     }
   ]
 }

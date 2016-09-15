@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by aleksandar on 9/14/16.
+ * Created by danijel on 9/14/16.
  */
 @Entity
 @NamedQueries(
@@ -44,7 +44,7 @@ public class Reservations {
     }
 
 
-    private boolean reserve(int seatNumber, String userid) {
+    public boolean reserve(int seatNumber, String userid) {
         Seat seat = seats.get(seatNumber);
         if (seat.isFree()) {
             seat.reserve(userid);

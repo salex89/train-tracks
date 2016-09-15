@@ -7,7 +7,7 @@ import rs.edu.vtsnis.dmitrovic.train_track.models.Reservations;
 import java.util.List;
 
 /**
- * Created by aleksandar on 9/14/16.
+ * Created by danijel on 9/14/16.
  */
 public class ReservationsDAO extends AbstractDAO<Reservations> implements DAO<Reservations> {
     public ReservationsDAO(SessionFactory sessionFactory) {
